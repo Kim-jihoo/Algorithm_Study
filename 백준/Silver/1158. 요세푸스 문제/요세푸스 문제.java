@@ -4,7 +4,6 @@ import java.io.*;
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
         
         
@@ -27,9 +26,6 @@ public class Main{
             sb.append(q.poll()+", ");
         }
             sb.append(q.poll()+">");
-            bw.write(sb.toString() +"\n");
-            bw.flush();
-            bw.close();
-            br.close();
+            System.out.println(sb);
     }
 }
