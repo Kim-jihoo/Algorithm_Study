@@ -7,6 +7,10 @@ class Solution {
             y n줄(짝) -> b=2*((y/n)+2)+2*n // y/n+2,n+2
             y n줄(홀) -> b=(y/n+2)*(n+2)-y //y/n+2, n+2
             b+y=(y/n+2)(n+2);
+            00000
+            00000
+            00000
+            00000
         */
         int a = brown+yellow;
         
