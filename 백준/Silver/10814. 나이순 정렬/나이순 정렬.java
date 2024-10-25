@@ -1,36 +1,26 @@
 import java.io.*;
 import java.util.*;
-
-class Member{
-    int age;
-    String name;
-    public Member(int age, String name){
-        this.age = age;
-        this.name=name;
-    }
-}
-
 public class Main{
     public static void main(String[] args)throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        
-        Member[] members = new Member [n];
+        String [][] arr= new String[n][2];
         for(int i=0; i<n; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int age = Integer.parseInt(st.nextToken());
-            String name = st.nextToken();
-            members[i] = new Member(age, name);
+            arr[i][0] = st.nextToken();
+            arr[i][1] = st.nextToken();
         }
-        Arrays.sort(members,(a,b)->{
-            if(a.age!=b.age){
-                return a.age-b.age;
+        Arrays.sort(arr,(a,b)->{
+            if(!a[0].equals(b[0])){
+                int ageA = Integer.parseInt(a[0]);
+                int ageB = Integer.parseInt(b[0]);
+                return ageA-ageB;
             }else{
                 return 0;
             }
         });
-     for(Member member : members){
-         System.out.println(member.age+" "+ member.name);
-     }
+        for(int i=0; i<n; i++){
+            System.out.println(arr[i][0]+" "+arr[i][1]);
+        }
     }
 }
