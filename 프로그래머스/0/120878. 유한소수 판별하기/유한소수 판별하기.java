@@ -1,23 +1,22 @@
 class Solution {
     public int solution(int a, int b) {
-        int answer = 0;
-        int gcd = gcd(a,b);
-        int denom=b/gcd;
-        while(denom%2==0){
-            denom/=2;
+        int answer = 2;
+        int n = gcd(a,b);
+        b=b/n;
+        while(b%2==0){
+            b=b/2;
         }
-        while(denom%5==0){
-            denom/=5;
+        while(b%5==0){
+            b=b/5;
         }
-        if(denom==1){
-            answer=1;
-        }else answer=2;
+        if(b==1) answer=1;
         return answer;
     }
     private int gcd(int a, int b){
         if(b==0){
             return a;
+        }else{
+            return gcd(b,a%b);
         }
-        return gcd(b,a%b);
     }
 }
