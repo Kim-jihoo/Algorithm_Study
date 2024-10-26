@@ -1,36 +1,45 @@
 import java.util.*;
 class Solution {
-    private Set<Integer> numberSet = new HashSet<>();
+    public static Set<Integer> set;
+    public static boolean[] visit;
     public int solution(String numbers) {
-        boolean[] visited = new boolean[numbers.length()];
-        dfs(numbers, "", visited);
-        int primeCount=0;
-        for(int num : numberSet){
-            if(isPrime(num)){
-                primeCount++;
+        int answer = 0;
+        set = new HashSet<>();
+        visit = new boolean[numbers.length()];
+       
+          dfs(numbers,"",0);
+        for(int key: set){
+            if(isPrime(key)){
+                answer++;
+            }
+        };
+        return answer;
+    }
+    public static void dfs(String numbers, String str, int depth){
+        if(!str.isEmpty()){
+            set.add(Integer.parseInt(str));
+        }
+        if(depth==numbers.length()){
+            return;
+        }
+        String[] s = numbers.split("");
+        for(int i=0; i<s.length;i++){
+            if(!visit[i]){
+                visit[i]=true;
+                dfs(numbers,str+s[i],depth+1);
+                visit[i]=false;
             }
         }
-        return primeCount;
-        
     }
-
-     private void dfs(String numbers, String current, boolean[] visited){
-        if(!current.isEmpty()){
-            numberSet.add(Integer.parseInt(current));
+    public static boolean isPrime(int n){
+        if(n<2){
+            return false;
         }
-        for(int i=0; i<numbers.length();i++){
-            if(!visited[i]){
-            visited[i] =true;
-            dfs(numbers, current+numbers.charAt(i), visited);
-            visited[i]=false;
+        for(int i=2; i<=Math.sqrt(n);i++){
+            if(n%i==0){
+                return false;
             }
-        }
-    }
-    private boolean isPrime(int num){
-        if(num<=1) return false;
-        for(int i=2; i<=Math.sqrt(num);i++){
-            if(num%i==0) return false;
         }
         return true;
-    }
+    };
 }
