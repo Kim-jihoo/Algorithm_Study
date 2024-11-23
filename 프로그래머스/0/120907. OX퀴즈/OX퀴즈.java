@@ -1,21 +1,22 @@
 class Solution {
     public String[] solution(String[] quiz) {
-        String[] answer = new String[quiz.length];
-        for(int i=0; i<quiz.length; i++){
-            String []ch = quiz[i].split(" ");
-            int x = Integer.parseInt(ch[0]);
-            String operator = ch[1];
-            int y = Integer.parseInt(ch[2]);
-            int z = Integer.parseInt(ch[4]);
-            
-            int n=0;
-            if(operator.equals("+")){
-                n=x+y;
-            }else if(operator.equals("-")){
-                n=x-y;
+        String[] answer = new String [quiz.length];
+        for(int i=0; i<answer.length; i++){
+            int k = 0;
+            String str[] = quiz[i].split(" ");
+            int a = Integer.parseInt(str[0]);
+            int b = Integer.parseInt(str[2]);
+            int c = Integer.parseInt(str[4]);
+            if(str[1].equals("+")){
+                k=a+b;
+            }else{
+                k=a-b;
             }
-            if(z==n) answer[i]="O";
-            else answer[i]="X";
+            if(k==c){
+                answer[i]="O";
+            }else{
+                answer[i]="X";
+            }
         }
         return answer;
     }
