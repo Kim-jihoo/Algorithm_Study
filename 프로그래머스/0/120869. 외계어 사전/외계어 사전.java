@@ -13,10 +13,10 @@ class Solution {
             String sortedWord = new String(wordChars);
 
             if (spellKey.equals(sortedWord)) {
-                return 1; // 일치하는 단어가 있으면 1 반환
+                return 1; 
             }
         }
 
-        return 2; // 없으면 2 반환
+        return 2; 
     }
 }
