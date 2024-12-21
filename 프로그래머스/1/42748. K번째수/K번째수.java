@@ -1,16 +1,18 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int [commands.length];
-    
+        int[] answer = new int[commands.length];
         for(int i=0; i<commands.length; i++){
-            int start = commands[i][0];
-            int end = commands[i][1];
-            int position = commands[i][2];
-            
-            int[] slicedArray = Arrays.copyOfRange(array, start-1, end);
-            Arrays.sort(slicedArray);
-            answer[i]=slicedArray[position-1];
+            int a = commands[i][1];
+            int b = commands[i][0];
+            int[] arr = new int[a-b+1];
+            int idx = 0;
+            for(int j=b-1; j<a; j++){
+                arr[idx] = array[j];
+                idx++;
+            }
+            Arrays.sort(arr);
+            answer[i]=arr[commands[i][2]-1];
         }
         return answer;
     }
