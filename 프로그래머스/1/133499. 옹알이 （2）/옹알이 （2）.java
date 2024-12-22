@@ -8,7 +8,12 @@ class Solution {
              if (word.contains("ayaaya") || word.contains("yeye") || word.contains("woowoo") || word.contains("mama")) {
                 continue;
             }
-            if (word.matches("^(aya|ye|woo|ma)+$")) {
+            word = word.replace("aya", " ");
+            word = word.replace("ye", " ");
+            word = word.replace("woo", " ");
+            word = word.replace("ma", " ");
+            word = word.replace(" ","");
+            if (word.equals("")) {
                 answer++;
             }
         }
