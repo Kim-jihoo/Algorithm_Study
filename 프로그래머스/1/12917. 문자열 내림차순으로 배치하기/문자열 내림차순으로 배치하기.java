@@ -2,11 +2,10 @@ import java.util.*;
 class Solution {
     public String solution(String s) {
         String answer = "";
-        String[] str = s.split("");
-        Arrays.sort(str, Collections.reverseOrder());
-        for(int i=0; i<str.length; i++){
-            answer += str[i];
-        }
+        char[] ch = s.toCharArray();
+        Arrays.sort(ch);
+        StringBuilder sb = new StringBuilder(new String(ch));
+        answer=sb.reverse().toString();
         return answer;
     }
 }
