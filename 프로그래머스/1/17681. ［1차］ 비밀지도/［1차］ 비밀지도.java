@@ -1,26 +1,22 @@
 class Solution {
     public String[] solution(int n, int[] arr1, int[] arr2) {
-        String[] answer = new String[arr1.length];
-  
-        
-        for(int i=0; i<arr1.length; i++){
-            String a = String.format("%"+n+"s", Integer.toString(arr1[i], 2)).replace(" ","0");
-            String b = String.format("%"+n+"s", Integer.toString(arr2[i], 2)).replace(" ","0");
-            String[] str1 = a.split("");
-            String[] str2 = b.split("");
-            String s = "";
-            for(int j=0; j<str1.length; j++){
+        String[] answer = new String[n];
+        int fix = n;
+        for(int i=0; i<n; i++){
+            String s1 = String.format("%"+fix +"s",Integer.toBinaryString(arr1[i])).replace(' ','0');
+            String s2 = String.format("%"+fix+"s",Integer.toBinaryString(arr2[i])).replace(' ','0');
+            String[] str1 = s1.split("");
+            String[] str2 = s2.split("");
+            StringBuilder sb = new StringBuilder();
+            for(int j=0; j<str1.length;j++){
                 if(str1[j].equals("1")||str2[j].equals("1")){
-                    s+="#";
+                    sb.append("#");
                 }else{
-                    s+=" ";
+                    sb.append(" ");
                 }
             }
-            answer[i]=s;
-            
+            answer[i]=sb.toString();
         }
-        
-        
         return answer;
     }
 }
