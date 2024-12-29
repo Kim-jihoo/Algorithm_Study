@@ -1,33 +1,27 @@
 import java.util.*;
 class Solution {
     public int[] solution(int N, int[] stages) {
-        int[] answer = new int[N];
-        int[] player = new int[N+2];
-        int total = stages.length;
-        
-        for(int i=0; i<stages.length; i++){
-            player[stages[i]]++;
-        }
         double[][] fail = new double[N][2];
-        for(int i=1; i<=N; i++){
-            if(total==0){
-                fail[i-1][0]=0.0;
-            }else{
-                fail[i-1][0] = (double)player[i]/total;
-            }
-            fail[i-1][1]=i;
-            total-=player[i];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<stages.length; i++){
+            map.put(stages[i],map.getOrDefault(stages[i],0)+1);
         }
-        Arrays.sort(fail,(a,b)->{
-            if(a[0]==b[0]){
-                return Double.compare(a[1], b[1]); // 번호 오름차순
-            }
-            return Double.compare(b[0], a[0]);
-        });
+        int num =stages.length;
         for(int i=0; i<N; i++){
-            answer[i]=(int)fail[i][1];
+            if(map.containsKey(i+1)){
+                fail[i][0]=i+1;
+                fail[i][1]=(double)map.get(i+1)/num;
+                num-=map.get(i+1);
+            }else{
+                fail[i][0]=i+1;
+                fail[i][1]=0;
+            }
         }
-        
+        int[] answer = new int[N];
+        Arrays.sort(fail,(a,b)->Double.compare(b[1],a[1]));
+        for(int i=0; i<N; i++){
+            answer[i]=(int)fail[i][0];
+        }
         return answer;
     }
 }
