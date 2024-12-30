@@ -1,28 +1,27 @@
 class Solution {
     public String solution(int n, int t, int m, int p) {
-        StringBuilder total = new StringBuilder();
-        StringBuilder result = new StringBuilder();
+        StringBuilder answer = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         int num=0;
-        while(total.length()<t*m){
-            total.append(convertToBase(num++,n));
+        while(sb.length()<m*t){
+            sb.append(cal(num,n));
+            num++;
         }
         for(int i=0; i<t; i++){
-            result.append(total.charAt((p - 1) + i * m));
-
+            answer.append(sb.charAt((p - 1) + i * m));
         }
-        return result.toString();
+        return answer.toString();
     }
-    public String convertToBase(int num, int base){
+    public String cal(int num, int n){
         StringBuilder sb = new StringBuilder();
         if(num==0) return "0";
-        while(num>0){
-            int a = num%base;
-            if(a<10){
-                sb.append(a);
+        while(num!=0){
+            if(num%n>9){
+                sb.append((char)('A'+num%n-10));
             }else{
-                sb.append((char)('A'+(a-10)));
+                sb.append(num%n);
             }
-            num/=base;
+            num/=n;
         }
         return sb.reverse().toString();
     }
